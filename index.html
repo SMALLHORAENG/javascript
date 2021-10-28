@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- BootStrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-   
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
 </head>
 <body>
-    <div class="container">
+    <!-- 개발자의 품격 유튜브 -->
+    <!-- <div class="container">
         <div>이름 : <input type="text" id="name" />
-        </div>
+        </div> -->
         <!-- select - click X , onchange O -->
-        <div>지역 : <select id="city" onchange="changeCity();">
+        <!-- <div>지역 : <select id="city" onchange="changeCity();"> -->
             <!-- <option value="02" selected>서울</option>
             <option value="064">제주</option> -->
-        </select>
+        <!-- </select>
         </div>
         <div>동네 :
             <select id="region_02">
@@ -32,93 +32,93 @@
                 <option value="">해운대</option>
                 <option value="">광안리</option>
             </select>
-        </div>
+        </div> -->
         <!-- <div>테스트 : <input type="text" id ="test" value="" /></div> -->
-        <button type="button" onclick="regist();">등록</button>
-    </div>
+        <!-- <button type="button" onclick="regist();">등록</button>
+    </div> -->
 
     <!-- BootStrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-    </script>
+    </script> -->
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
-    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script> -->
 
     <!-- js -->
-    <script>
-        function regist(){
-            // js
-            //alert(document.getElementById("name").value);
-            //alert(document.getElementById("city").value);
-            // document.getElementById("name").value;
+    <!-- <script>
+        // function regist(){
+        //     // js
+        //     //alert(document.getElementById("name").value);
+        //     //alert(document.getElementById("city").value);
+        //     // document.getElementById("name").value;
 
-            // jQuery
-            alert($("#name").val());
-            alert($("#city").val());
+        //     // jQuery
+        //     alert($("#name").val());
+        //     alert($("#city").val());
 
-            let obj = {
-                name : "",
-                city : ""
-            };
+        //     let obj = {
+        //         name : "",
+        //         city : ""
+        //     };
 
-            obj.name = $("#name").val();
-            obj.city = $("#city").val();
+        //     obj.name = $("#name").val();
+        //     obj.city = $("#city").val();
 
-            printConsole(obj);
-        }
+        //     printConsole(obj);
+        // }
 
 
         // 오브젝트 값 출력
-        function printConsole(data){
-            console.log(data);
-        }
+        // function printConsole(data){
+        //     console.log(data);
+        // }
 
-        // 배열 값 출력
-        function loadCity(){
-            let city = [{
-                code: "02",
-                name: "서울"
-            },
-            {
-                code: "064",
-                name: "제주"
-            },
-            {
-                code: "04",
-                name: "부산"
-            }
-        ];  
+        // // 배열 값 출력
+        // function loadCity(){
+        //     let city = [{
+        //         code: "02",
+        //         name: "서울"
+        //     },
+        //     {
+        //         code: "064",
+        //         name: "제주"
+        //     },
+        //     {
+        //         code: "04",
+        //         name: "부산"
+        //     }
+        // ];  
         
         // 반복문 - for 통해서 코드내용 조건에 맞게 반복 (시작조건, 종료조건, 종료시키기 위해서 만드는 조건)
-        for(let i = 0; i < city.length ; i++){
-            // 조건문
-            if(i == 0){
-                $('#city').append('<option value="'+ city[i].code + '"selected">' 
-                    + city[i].name + '</option>');
-                }  
-                else if(i == 1){
-                    $('#city').append('<option value="'+ city[i].code + '"selected">' 
-                    + city[i].name + '</option>');
-                        }
-                    else {
-                        $('#city').append('<option value="'+ city[i].code + '">' 
-                            + city[i].name + '</option>');
-                    }
-        }
+        // for(let i = 0; i < city.length ; i++){
+        //     // 조건문
+        //     if(i == 0){
+        //         $('#city').append('<option value="'+ city[i].code + '"selected">' 
+        //             + city[i].name + '</option>');
+        //         }  
+        //         else if(i == 1){
+        //             $('#city').append('<option value="'+ city[i].code + '"selected">' 
+        //             + city[i].name + '</option>');
+        //                 }
+        //             else {
+        //                 $('#city').append('<option value="'+ city[i].code + '">' 
+        //                     + city[i].name + '</option>');
+        //             }
+        // }
 
         //append 메서드 (HTML에 태그 추가등등 이용)
         // $('#city').append('<option value="02" selected>서울</option>');
         // $('#city').append('<option value="064" >제주</option>');
         // $('#city').append('<option value="04" >부산</option>');
         }
-        loadCity();
+        // loadCity();
 
         // id값 city 부분의 value를 가져와서 숨기고 조건에 맞춰 보여줌
-        function changeCity(){
+        // function changeCity(){
             // let city = document.getElementById("city").value;
             // document.getElementById("region_02").style.display = "none";
             // document.getElementById("region_064").style.display = "none";
@@ -127,12 +127,12 @@
             // document.getElementById("region_"+city).style.display = "";
 
             //jQuery 방식 (위 코드와 동일한 결과 보여줌)
-            let city = $('#city').val();
-            $('#region_02').hide();
-            $('#region_064').hide();
-            $('#region_04').hide();
-            $('#region_'+city).show();
-        }
+        //     let city = $('#city').val();
+        //     $('#region_02').hide();
+        //     $('#region_064').hide();
+        //     $('#region_04').hide();
+        //     $('#region_'+city).show();
+        // }
 
         //var , let , const
         //var x = 1;
@@ -166,7 +166,52 @@
         // let arr = [];
         //위부터 숫자 ~ 배열 순서
 
-    </script>
+    </script> -->
 
+    <script>
+        //js 중급 (코딩앙마)
+        //var는 선언하기 전에 사용할 수 있다 (호이스팅), 선언만 호이스팅 되고 값은 X
+        //호이스팅 : 스코프 내부 어디서든 변수 선언은 최상위에 선언된 것 처럼 행동
+        //var와 다르게 에러가 생기는 이유, TDZ(Temporal Dead Zone) 때문
+        //let 과 const는 할당을 하기 전 사용이 불가능 (잠재적 버그를 줄여줌)
+
+        // 변수의 생성과점
+        // var -   1.선언 및 초기화 단계
+        //         2.할당 단계
+        // let -   1.선언 단계
+        //         2.초기화 단계
+        //         3.할당 단계
+        // const - 1.선언 + 초기화 + 할당 
+        
+        // var는 함수 스코프, let,const는 블록 스코프이다
+        // 블록 스코프는 함수 if문 for문 while문 try/catch문 등
+        // 블록 내부에서만 접근(지역변수) 외부에서 접근이 불가능
+        // (if문 내부 var로 선언된 것 외부에서 사용 가능
+        // let는 불가능, 중괄호 내부에서만 사용 가능)
+        // var는 유일하게 함수 내부에서 선언되면 외부에서 사용이 불가능하다
+
+        // 생성자 함수 (첫 글자는 대문자로)
+        // this는 선언이 아닌 호출에 따라 달라짐 (호출자가 누구인가? 가르킴)
+        // 함수에서 사용시 전역범위, 메소드는 객체
+        // 아래 코드를 예시로 들면 this.title은 전역변수를 의미
+        function Item(title,price){
+            this.title = title;
+            this.price = price;
+            this.showPrice = function(){
+                console.log(`${title}가격은 ${price}원 입니다.`);
+            }
+        }
+        // new 연산자를 사용해서 호출
+        // new로 실행해주면 this = {};와 return this; 를 알고리즘이 알아서 해준다
+        const item1 = new Item('인형', 3000);
+        const item2 = new Item('가방', 4000);
+        const item3 = new Item('지갑', 5000);
+
+        console.log(item1,item2,item3);
+
+
+
+
+    </script>
 </body>
 </html>
