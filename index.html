@@ -194,22 +194,65 @@
         // this는 선언이 아닌 호출에 따라 달라짐 (호출자가 누구인가? 가르킴)
         // 함수에서 사용시 전역범위, 메소드는 객체
         // 아래 코드를 예시로 들면 this.title은 전역변수를 의미
-        function Item(title,price){
-            this.title = title;
-            this.price = price;
-            this.showPrice = function(){
-                console.log(`${title}가격은 ${price}원 입니다.`);
-            }
-        }
-        // new 연산자를 사용해서 호출
-        // new로 실행해주면 this = {};와 return this; 를 알고리즘이 알아서 해준다
-        const item1 = new Item('인형', 3000);
-        const item2 = new Item('가방', 4000);
-        const item3 = new Item('지갑', 5000);
+        // function Item(title,price){
+        //     this.title = title;
+        //     this.price = price;
+        //     this.showPrice = function(){
+        //         console.log(`${title}가격은 ${price}원 입니다.`);
+        //     }
+        // }
+        // // new 연산자를 사용해서 호출
+        // // new로 실행해주면 this = {};와 return this; 를 알고리즘이 알아서 해준다
+        // const item1 = new Item('인형', 3000);
+        // const item2 = new Item('가방', 4000);
+        // const item3 = new Item('지갑', 5000);
+        // // new 없이 실행시 undefined가 출력된다 (return된 값이 없으므로)
 
-        console.log(item1,item2,item3);
+        // console.log(item1,item2,item3);
 
+        // item3.showPrice();
 
+        // Computed property
+        // let a = 'age';
+        // const user = {
+        //     name : 'Mike',
+        //     [a] : 30 // age:30
+        //     //대괄호로 묶어주면 문자열 a가 아닌 a라는 변수에 할당된 값이 들어감 (age : 30 이런식)
+        //     //이를 계산된 프로퍼티 computed property라고 부름
+        // }
+        // console.log(a) //age
+        // console.log(user[a]) // 30
+        // console.log(user) //name : 'Mike' , age : 30
+
+        // //객체에서 사용 메서드들
+        // object.assign()
+        // //객체 복제,cloneUser을 하면 위와같은 코드에서는 객체 내부의 내용이 바뀜(한 객체에 두 변수접근)
+        // //const newUser = Object.assign({}, user);
+        // //중괄호는 초기 값, 두번째값(user)이 초기 값에 병합됨
+        // //위 코드처럼 빈 객체에 user값이 병합되므로 복제되는 것 (이름 바꿔도 다른 객체이므로 문제X)
+        // //하지만 중괄호 부분의 값이 이미 user안에 내용과 동일하다면 덮어쓰고 아니면 추가해줌
+        // //세가지의 값도 하나로 합칠 수 있음 Object.assign(user, info1, info2) - user에 info1,2 넣음
+        
+        // object.keys()
+        // //키 배열 반환, user의 객체안에 name과 age와 gender등의 값이 있다면 이걸 배열로 반환시켜줌
+        
+        // object.values()
+        // //값 배열 반환, keys와 다르게 값만 가져오고 싶으면 values 쓰면 됨 (name의 값, age의 값 등등)
+
+        // object.entries()
+        // //키/값 배열 반환, key와 배열의 값 모두 묶어 줌 ["name","Mike"],["age", 30] 이런식으로
+        
+        // object.fromEntries()
+        // //키/값 배열을 객체로 바꿔줌, 아래코드 실행시 {name : 'Mike', age : 30, gender : 'male',}
+        // //위 실행시 부분처럼 결과가 나온다
+        // const arr = [
+        //     ["name","Mike"],
+        //     ["age",30],
+        //     ["gender","male"]
+        // ];
+        // Object.fromEntries(arr);
+
+        (03분.19초부터 다시 듣기)
 
 
     </script>
