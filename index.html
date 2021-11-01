@@ -220,27 +220,39 @@
         //     //대괄호로 묶어주면 문자열 a가 아닌 a라는 변수에 할당된 값이 들어감 (age : 30 이런식)
         //     //이를 계산된 프로퍼티 computed property라고 부름
         // }
-        // console.log(a) //age
-        // console.log(user[a]) // 30
+        // console.log(a) //age (key 값이 age가 되는 것)
+        // console.log(user[a]) // 30 
         // console.log(user) //name : 'Mike' , age : 30
 
         // //객체에서 사용 메서드들
         // object.assign()
-        // //객체 복제,cloneUser을 하면 위와같은 코드에서는 객체 내부의 내용이 바뀜(한 객체에 두 변수접근)
+        // //객체 복제,cloneUser를 하면 위와같은 코드에서는 객체 내부의 내용이 바뀜(한 객체에 두 변수접근)
         // //const newUser = Object.assign({}, user);
         // //중괄호는 초기 값, 두번째값(user)이 초기 값에 병합됨
         // //위 코드처럼 빈 객체에 user값이 병합되므로 복제되는 것 (이름 바꿔도 다른 객체이므로 문제X)
         // //하지만 중괄호 부분의 값이 이미 user안에 내용과 동일하다면 덮어쓰고 아니면 추가해줌
         // //세가지의 값도 하나로 합칠 수 있음 Object.assign(user, info1, info2) - user에 info1,2 넣음
-        
+            //예시 코드
+            // const user = {
+            //     name : "Mike",
+            //     age : 30,
+            // }
+            // const user2 = Object.assign({},user);
+            // user2.name = "Tom";
+            
+            // console.log(user); //name: 'Mike', age: 30
+            // console.log(user2);//name: 'Tom', age: 30
+            // 위 코드에서 Object.assign을 사용하지 않고 그대로 user2.name = "Tom"; 하면
+            // user객체의 값도 모두 변경되어 아래의 출력에 Mike인 기존값이 아닌 둘다 Tom으로 출력된다.
+
         // object.keys()
-        // //키 배열 반환, user의 객체안에 name과 age와 gender등의 값이 있다면 이걸 배열로 반환시켜줌
+        // //키, 배열 반환, user의 객체안에 name과 age와 gender등의 값이 있다면 이걸 배열로 반환시켜줌
         
         // object.values()
-        // //값 배열 반환, keys와 다르게 값만 가져오고 싶으면 values 쓰면 됨 (name의 값, age의 값 등등)
+        // //값, 배열 반환, keys와 다르게 값만 가져오고 싶으면 values 쓰면 됨 (name의 값, age의 값 등등)
 
         // object.entries()
-        // //키/값 배열 반환, key와 배열의 값 모두 묶어 줌 ["name","Mike"],["age", 30] 이런식으로
+        // //키/값, 배열 반환, key와 배열의 값 모두 묶어 줌 ["name","Mike"],["age", 30] 이런식으로
         
         // object.fromEntries()
         // //키/값 배열을 객체로 바꿔줌, 아래코드 실행시 {name : 'Mike', age : 30, gender : 'male',}
@@ -249,11 +261,89 @@
         //     ["name","Mike"],
         //     ["age",30],
         //     ["gender","male"]
-        // ];
-        // Object.fromEntries(arr);
+        // ]; //앞이 key값 , 뒤에가 value값 (이 코드에서 name는 key값, Mike는 value값)
+        // Object.fromEntries(arr); 
 
-        (03분.19초부터 다시 듣기)
+        //심볼 (Symbol)
+        //property key : 문자형 , 객체 property key 문자형 가능하고, 하나 더 가능 그것이 심볼형
+        //심볼은 new를 붙이지 않음 (유일한 식별자를 만들 때 사용, 유일성 보장 모든 코드중 하나)
+        // 심볼을 만들 때 설명을 해줄 수 있음 (const id = Symbol('id'); 이런식으로)
+        // 문자열을 전달해주면 되는데 심볼 생성에 영향을 주지는 않음
+        // const id = Symbol('id');
+        // const id2 = Symbol('id');
+        // 위 코드를 찍어보면 Symbol(id) 라고 동일하게 나오지만 id === id2 / id == id2 모두 false가 나옴
 
+        //객체의 키에 사용
+        // const id = Symbol('id');
+        // const user = {
+        //     name : 'Mike',
+        //     age : 30,
+        //     [id] : 'myid' //property key를 심볼형으로 넣음
+        // } //user로 찍으면 name: "Mike", age: 30, Symbol(id): "myid" 라고 나옴
+        // Object.keys(user); //["name", "age"]
+        // Object.values(user); //["Mike", 30]
+        // Object.entries(user); //[Array(2), Array(2)]
+        //이런 메서드들은 key가 심볼형인 property는 건너 뜀(for in을 사용해도 건너 뜀)
+        //심볼은 특정위치의 원본 데이터 건드리지 않고 속성추가가 가능하다
+
+        //Symbol.for() : 전역 심볼
+        // 하나의 심볼만 보장받을 수 있음
+        // 없으면 만들고, 있으면 가져오기 때문
+        // Symbol 함수는 매번 다른 Symbol 값을 생성하지만,
+        // Symbol.for 메서드는 하나를 생성한 뒤 키를 통해 같은 Symbol을 공유
+        // // 예시코드
+        // const id1 = Symbol.for('id');
+        // const id2 = Symbol.for('id');
+        // id1 === id2; //true (for이 심볼에 없다면 false가 나올 것)
+        
+        // Symbol.keyFor(id1) //이 코드 이용시 이름을 얻을 수 있음 결과값은 'id' 라고 나옴
+        
+        // 전역 심볼이 아닌경우
+        // const id = Symbol('id 입니다.');
+        // id.description; //'id 입니다,' 라고 출력됨 (전역심볼이 아닌 심볼의 이름 알아내는 방법)
+
+        //숨겨진 심볼 키 보는 방법
+        // Object.getOwnPropertySymbols(user); // [Symbol(id)] 심볼들만 볼 수 있음
+        // Reflect.ownKeys(user); // ["name", "age", Symbol(id)] 객체의 모든 키 값을 볼 수 있음
+        // 대부분의 라이브러리, 내장 함수등은 이런 메서드 사용안함 (걱정말고 사용해도 됨)
+        
+        //심볼의 장점이 보이는 예시 코드
+            // 다른 개발자가 만든 객체
+        const user = {
+            name: "Mike",
+            age: 30,
+        };
+
+        const user2 = {
+            name: "Tom",
+            age: 29,
+        }
+
+            //내 작업
+        //user.showName = function(){} // user.showName = function(){} 이라고 그대로 출력된다
+        
+        //위 코드가 아닌 아래 코드로 실행시 Mike / His name is Mike / His age is 30 이라고 출력된다
+        const showName = Symbol("show name"); //선언 (show name은 설명)
+        //const showName2 = Symbol("show name2");
+        //심볼이 선언되는 변수명은 상관없고 심볼을 통해서 고유값이 됨
+        user[showName] = function() {
+            //user는 객체명 , showName은 Symbol을 이용해 고유값으로 되는 user의 값들
+
+            //console.log(showName === showName); //true
+            //console.log(showName === Symbol("show name")); //false
+            console.log(this.name,this.age);
+        }
+
+        user[showName](); //위 생성된 함수 실행
+
+            //사용자에게 보이는 메시지
+        for (let key in user){
+            console.log(`His ${key} is ${user[key]}.`);
+        }
+        //for in은 for (const 변수 in 객체){} 와 같은 방법으로 사용
+        //여기서 key는 객체안의 key값이고 user은 객체명이므로 
+        //user[key]를 통해서 user에 key값이 동일한거의 value를 가져옴
+        //for in문은 루프다.
 
     </script>
 </body>
