@@ -309,41 +309,186 @@
         
         //심볼의 장점이 보이는 예시 코드
             // 다른 개발자가 만든 객체
-        const user = {
-            name: "Mike",
-            age: 30,
-        };
+        // const user = {
+        //     name: "Mike",
+        //     age: 30,
+        // };
 
-        const user2 = {
-            name: "Tom",
-            age: 29,
-        }
+        // const user2 = {
+        //     name: "Tom",
+        //     age: 29,
+        // }
 
-            //내 작업
-        //user.showName = function(){} // user.showName = function(){} 이라고 그대로 출력된다
+        //     //내 작업
+        // //user.showName = function(){} // user.showName = function(){} 이라고 그대로 출력된다
         
-        //위 코드가 아닌 아래 코드로 실행시 Mike / His name is Mike / His age is 30 이라고 출력된다
-        const showName = Symbol("show name"); //선언 (show name은 설명)
-        //const showName2 = Symbol("show name2");
-        //심볼이 선언되는 변수명은 상관없고 심볼을 통해서 고유값이 됨
-        user[showName] = function() {
-            //user는 객체명 , showName은 Symbol을 이용해 고유값으로 되는 user의 값들
+        // //위 코드가 아닌 아래 코드로 실행시 Mike / His name is Mike / His age is 30 이라고 출력된다
+        // const showName = Symbol("show name"); //선언 (show name은 설명)
+        // //const showName2 = Symbol("show name2");
+        // //심볼이 선언되는 변수명은 상관없고 심볼을 통해서 고유값이 됨
 
-            //console.log(showName === showName); //true
-            //console.log(showName === Symbol("show name")); //false
-            console.log(this.name,this.age);
-        }
+        // user[showName] = function() {
+        //     //user는 객체명 , showName은 Symbol을 이용해 고유값으로 되는 user의 값들
+        //     //user의 값들을 showName을 통해서 가져온다고 이해 (이걸 Symbol로 선언했으니 고유값)
 
-        user[showName](); //위 생성된 함수 실행
+        //     //console.log(showName === showName); //true
+        //     //console.log(showName === Symbol("show name")); //false
+        //     console.log(this.name,this.age);
+        // }
 
-            //사용자에게 보이는 메시지
-        for (let key in user){
-            console.log(`His ${key} is ${user[key]}.`);
-        }
+        // user[showName](); //위 생성된 함수 실행
+
+        //     //사용자에게 보이는 메시지
+        // for (let key in user){
+        //     console.log(`His ${key} is ${user[key]}.`);
+        // }
         //for in은 for (const 변수 in 객체){} 와 같은 방법으로 사용
         //여기서 key는 객체안의 key값이고 user은 객체명이므로 
         //user[key]를 통해서 user에 key값이 동일한거의 value를 가져옴
         //for in문은 루프다.
+
+        //Number , Math
+        //.toString(10진수) -> 2진수/16진수
+        //let num = 10; (2진수)
+        //num.toString(); 결과값 "10" / num.toString(2); 결과값 "1010"
+        //let num2 = 255; (16진수)
+        //num2.toString(16); 결과값 "ff" / num2.toString(10); 결과값 "255"
+
+        //Math
+        // Math.PI; // 파이값이 나옴
+        // Math.ceil() //올림 (괄호안의 내용 소수점 상관없이 올림)
+        // Math.floor() //내림 (괄호안의 내용 소수점 상관없이 내림)
+        // Math.round() //반올림 (괄호안의 내용 소수점이 5보다 높으면 올리고 아니면 내림)
+
+        // 소수점 둘째자리 까지 표현되게 해달라고 하면 셋째 자리에서 반올림 하면 됨
+        // 요구하는 숫자의 값이 30.1234의 경우로 해보자
+
+        // 방법 1 (round)
+        // let userRate = 30.1234;
+        // Math.round(userRate * 100)/100 //30.12가 출력된다
+
+        // 방법 2 (toFixed)
+        // userRate.toFixed(2); 해주면 30.12로 나오고
+        // 괄호부분을 0으로 하면 정수로 30이 나오고
+        // 괄호부분을 6으로 하면 나머지 부분을 0으로 채워줘서 30.123400 이 됨
+        // 주의할것은 문자열로 반환함, 그래서 Number(userRate.toFixed(2)); 를 해주는것이 좋다
+
+        //isNaN() (숫자가 아닌지 판단해줌)
+        //let x = Number('X'); 출력값은 NaN
+        //isNaN(x) 출력 true , isNaN(3) 출력 false
+
+        //parseInt() 문자열을 숫자로 바꿔줌(Number과 다르게 문자가 혼용되도 동작함)
+        // let margin = '10px';
+        // parseInt(margin); // 10 출력 (읽을 수 있는 부분까지만 읽음 숫자가 앞에 들어가서 된 것)
+        // //숫자로 시작하지 않으면 NaN 반환함
+        // Number(margin); // NaN 출력
+        // //ㅋparseInt는 두번째 인수를 받아 진수를 지정 가능(2진수 10진수 16진수 등등)
+        // let redColor = 'f3'
+        // parseInt(redcolor, 16); //243 (16진수로 출력)
+        // parseInt('11',2) // 3 (2진수로 출력)
+        
+        //parseFloat() 부동 소수점을 반환함, Int는 소수점 무시하고 정수만 반환
+
+        //몇가지 Math함수
+        //Math.random() // 0~1까지 무작위 숫자 생성 (소수점 매우 많게)
+        //1~100까지 임의의 숫자 뽑고싶으면
+        //Math.floor(Math.random()*100)+1
+        //설명 Math.random에서 0.6789가 만들어졌다고 가정하면
+        //*100을 해줘서 67.89를 만들어주고
+        //floor을 통해서 내림으로 67을 만들어주는데
+        //여기서 +1을 해주는 이유는 0이 나올수도 있어서 최소값인 1이 나오게 하기위해 더해줌
+        //결국 출력값은 68이 되는 것
+
+        //Math.max() / Math.min()
+        //Math.max(1,4,-1,5,10,9,5.54); //10 최대값
+        //Math.min(1,4,-1,5,10,9,5.54); //-1 최소값
+
+        //Math.abs() 절대값 구해줌 (absolute 약자임)
+        //Math.abs(-1) // 출력값 1
+
+        //Math.pow(n,m) 제곱 (power 약자임)
+        //Math.pow(2,10) // 출력값 1024
+
+        //Math.sqrt() 제곱근 (square root 약자임)
+        //Math.sqrt(16) // 출력값 4
+
+        //문자열 String
+        //여러줄 사용시 벡틱을 이용하는것이 좋다 아니라면 \n을 해줘야하는 번거로움이 생김
+        //length 배열,문자열 길이 , 대괄호 통해 특정문자로 접근도 가능 (한글자만 바꾸는것은 안됨)
+        
+        //toUpperCase() 대문자로 변환 / toLowerCase() 소문자로 변환
+
+        //str.indexOf(text) 문자를 인수로 받아 몇번째에 위치하는지 알려줌
+        //let desc = "Hi guys. Nice to meet you.";
+        //desc.indexOf('to'); //출력값 14
+        // 찾는문자 없으면 -1 반환 , 찾는문자 있어도 첫번째 위치만 반환해줌
+        // if에서 사용시 첫 문자를 찾으면 값이 0이 나오므로 false가 되서 실행안됨
+        // 그래서 if(desc.indexOf('Hi') > -1){} 이런식으로 조건 해주면 된다
+
+        //str.slice(n,m) 특정범위 문자열만 뽑기
+        // n은 시작점, m은 ~까지인데 , 없으면 문자열 끝까지, 양수면 그 숫자까지(포함하지 않음)
+        // 음수면 끝에서부터 셈 (5 적으면 4까지 반환)
+        // let desc = "abcdefg" 하고 desc.slice(2) 는 cdefg 반환
+        // desc.slice(0,5) 하면 abcde 반환, slice(2,-2) 는 cde 반환
+
+        //str.substring(n,m) n과 m 사이 문자열 반환 (서로 바꿔도 동작함) 음수는 0으로 인식
+
+        //str.substr(n,m) n부터 시작, m개를 가져옴 
+        //desc.substr(2,4) // "cdef" 출력
+
+        //str.trim 앞, 뒤 공백제거
+        
+        //str.repeat(n) 문자열을 n번 반복함
+        //let hello = "hello!";
+        //hello.repeat(2); // "hello!hello!" 출력
+
+        //문자열 비교
+        //"a".codePointAt(0); //출력값 97 (십진법 소문자 a의 값)
+        //String.fromCodePoint(97); //"a" (십진법 97응 문자로 바꿈)
+        
+        
+        //예제 1. (제목만 보기)
+        // let list = [
+        //     "01. 들어가며",
+        //     "02. JS의 역사",
+        //     "03. 자료형",
+        //     "04. 함수",
+        //     "05. 배열",
+        // ];
+
+        // let newList = [];
+
+        // for(let i = 0; i < list.length; i++){
+        //     newList.push(list[i].slice(4));
+        // }
+        // console.log(newList);
+
+
+        //예제 2. (금칙어 : 콜라)
+        // function hasCola(str){
+        //     if(str.indexOf('콜라') > -1 ){
+        //         console.log("금칙어가 있습니다.");
+        //     } else
+        //         console.log("통과")
+        // }
+
+        // hasCola("와 사이다가 짱이야"); // -1 나옴 (-1은 true) 그래서 if 조건에 > -1 해주면 됨
+        // hasCola("무슨소리, 콜라가 최고"); // 0은  false
+        // hasCola("콜라"); // 0
+
+
+        // 예제 3. (2와 동일한 것 includes 사용)
+        // function hasCola(str){
+        //     if(str.includes('콜라')){
+        //         console.log("금칙어가 있습니다.");
+        //     } else
+        //         console.log("통과")
+        // }
+
+        // hasCola("와 사이다가 짱이야"); 
+        // hasCola("무슨소리, 콜라가 최고"); 
+        // hasCola("콜라"); 
+        //includes는 문자가 있는지를 확인하기 때문에 > -1 안해줘도 됨
 
     </script>
 </body>
